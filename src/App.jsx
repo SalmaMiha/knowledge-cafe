@@ -1,11 +1,14 @@
 import './App.css'
+import Header from './components/Header/Header'
 
 function App() {
 
   return (
     <>
-      
-      <h1>Knowledge Cafe</h1>
+      <Header></Header>
+      <div className="mx-40 my-3">
+        <hr />
+      </div>
       
     </>
   )
