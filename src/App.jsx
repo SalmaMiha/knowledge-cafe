@@ -20,10 +20,17 @@ function App() {
     if (!checkBookmarked) {
       const newBookmarks = [...bookmarks, bookmarkedBlog];
       setBookmarks(newBookmarks);
-      setReadingTime(readingTime + bookmarkedBlog.reading_time);
     } else {
       alert("Already Bookmarked");
     }
+  };
+
+  const handleMarkAsRead = (MarkedReadingTime, id) => {
+    setReadingTime(readingTime + MarkedReadingTime);
+    const remainingBookmarks = bookmarks.filter(
+      (bookmark) => bookmark.id !== id
+    );
+    setBookmarks(remainingBookmarks);
   };
 
   return (
@@ -33,7 +40,10 @@ function App() {
         <hr />
       </div>
       <div className="flex mx-40">
-        <Blogs handleBookmark={handleBookmark}></Blogs>
+        <Blogs
+          handleBookmark={handleBookmark}
+          handleMarkAsRead={handleMarkAsRead}
+        ></Blogs>
         <Bookmarks bookmarks={bookmarks} readingTime={readingTime}></Bookmarks>
       </div>
     </>
