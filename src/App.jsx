@@ -9,9 +9,21 @@ function App() {
   const [readingTime, setReadingTime] = useState(0);
 
   const handleBookmark = (bookmarkedBlog) => {
-    const newBookmarks = [...bookmarks, bookmarkedBlog];
-    setBookmarks(newBookmarks);
-    setReadingTime(readingTime + bookmarkedBlog.reading_time);
+    let checkBookmarked = false;
+
+    bookmarks.forEach((element) => {
+      if (element.id === bookmarkedBlog.id) {
+        checkBookmarked = !checkBookmarked;
+      }
+    });
+
+    if (!checkBookmarked) {
+      const newBookmarks = [...bookmarks, bookmarkedBlog];
+      setBookmarks(newBookmarks);
+      setReadingTime(readingTime + bookmarkedBlog.reading_time);
+    } else {
+      alert("Already Bookmarked");
+    }
   };
 
   return (
