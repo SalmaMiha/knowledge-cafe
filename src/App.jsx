@@ -3,6 +3,8 @@ import "./App.css";
 import Blogs from "./components/Blogs/Blogs";
 import Header from "./components/Header/Header";
 import Bookmarks from "./components/Bookmarks/Bookmarks";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [bookmarks, setBookmarks] = useState([]);
@@ -21,7 +23,7 @@ function App() {
       const newBookmarks = [...bookmarks, bookmarkedBlog];
       setBookmarks(newBookmarks);
     } else {
-      alert("Already Bookmarked");
+      toast.info("Already Bookmarked");
     }
   };
 
@@ -44,6 +46,7 @@ function App() {
           handleBookmark={handleBookmark}
           handleMarkAsRead={handleMarkAsRead}
         ></Blogs>
+        <ToastContainer></ToastContainer>
         <Bookmarks bookmarks={bookmarks} readingTime={readingTime}></Bookmarks>
       </div>
     </>
